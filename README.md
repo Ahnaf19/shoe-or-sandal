@@ -4,6 +4,7 @@ A weather-based footwear recommendation bot that sends daily Telegram notificati
 
 Built with **Clean Architecture** and **SOLID principles** to demonstrate proper software design patterns in a practical application. The bot collects weather data for potential ML training while solving a real daily decision-making problem.
 
+> [!INFO]
 > **Status:** Core weather-to-Telegram pipeline implemented. Daily scheduling planned for future releases.
 
 ## Features
@@ -179,16 +180,16 @@ All configuration is done via `.env` file. See `.env.example` for all available 
 
 ## Code Hardening Features
 
-✅ **Type Safety**: Full type hints throughout codebase
-✅ **Error Handling**: Custom exceptions for different error types
-✅ **Retry Logic**: Exponential backoff for external service calls
-✅ **Timeouts**: Configurable timeouts to prevent hanging
-✅ **Validation**: Input validation at system boundaries
-✅ **Logging**: Comprehensive logging at all levels
-✅ **Health Checks**: System health verification before execution
-✅ **Separation of Concerns**: Clear layer boundaries
-✅ **Testability**: Interface-based design for easy mocking
-✅ **Configuration Validation**: Fail fast on invalid configuration
+- ✅ **Type Safety**: Full type hints throughout codebase
+- ✅ **Error Handling**: Custom exceptions for different error types
+- ✅ **Retry Logic**: Exponential backoff for external service calls
+- ✅ **Timeouts**: Configurable timeouts to prevent hanging
+- ✅ **Validation**: Input validation at system boundaries
+- ✅ **Logging**: Comprehensive logging at all levels
+- ✅ **Health Checks**: System health verification before execution
+- ✅ **Separation of Concerns**: Clear layer boundaries
+- ✅ **Testability**: Interface-based design for easy mocking
+- ✅ **Configuration Validation**: Fail fast on invalid configuration
 
 ## ML Dataset Collection
 
