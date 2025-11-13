@@ -237,7 +237,7 @@ At least, would try to complete the listed features. :)
 
 **Testing & Quality:**
 
-- [ ] Unit tests with pytest (domain & application layers)
+- [x] Unit tests with pytest (domain & application layers)
 - [ ] Integration tests with mocked infrastructure
 - [ ] End-to-end tests with test Telegram account
 - [ ] Code coverage reporting (pytest-cov, target: >80%)
