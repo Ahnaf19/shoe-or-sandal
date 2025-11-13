@@ -36,26 +36,92 @@ This project follows **Clean Architecture** with 4 distinct layers:
 
 ## Quick Start
 
-### 1. Prerequisites
+### Option A: Docker (Recommended)
 
-- Python 3.10 or higher
-- A Telegram account
-- `uv` or `pip` for package management
+**Prerequisites:** Docker and Docker Compose installed
 
-### 2. Clone and Install Dependencies
+1. **Clone the repository**
+
+   ```bash
+   git clone <your-repo-url>
+   cd shoe-or-sandal
+   ```
+
+2. **Set up Telegram Bot** (see [Telegram Bot Setup](#telegram-bot-setup) below for detailed steps)
+
+3. **Configure environment variables**
+
+   ```bash
+   cp .env.example .env
+   # Edit .env with your Telegram credentials
+   ```
+
+4. **Run with Docker**
+
+   ```bash
+   # One-time run
+   docker-compose run --rm weather-bot
+
+   # Or build and run manually
+   docker build -t shoe-or-sandal .
+   docker run --rm --env-file .env shoe-or-sandal
+   ```
+
+5. **Check Telegram** - You should receive a weather message!
+
+**Managing Docker:**
 
 ```bash
-git clone <your-repo-url>
-cd shoe-or-sandal
+# View logs
+docker-compose logs -f
 
-# Using uv (recommended)
-uv sync
+# Stop the container
+docker-compose down
 
-# Or using pip
-pip install -e .
+# Rebuild after code changes
+docker-compose build
 ```
 
-### 3. Set Up Telegram Bot
+**Note:** Weather data is persisted in the `./data` directory (mapped to `/app/data` in container).
+
+---
+
+### Option B: Manual Setup
+
+**Prerequisites:** Python 3.10+ and `uv` or `pip`
+
+1. **Clone and install dependencies**
+
+   ```bash
+   git clone <your-repo-url>
+   cd shoe-or-sandal
+
+   # Using uv (recommended)
+   uv sync
+
+   # Or using pip
+   pip install -e .
+   ```
+
+2. **Set up Telegram Bot** (see [Telegram Bot Setup](#telegram-bot-setup) below)
+
+3. **Configure environment variables**
+
+   ```bash
+   cp .env.example .env
+   # Edit .env with your credentials
+   ```
+
+4. **Test the bot**
+   ```bash
+   python main.py
+   ```
+
+You should receive a weather message on Telegram!
+
+---
+
+### Telegram Bot Setup
 
 #### Create a Bot
 
@@ -72,30 +138,12 @@ pip install -e .
 3. Find `"chat":{"id":123456789}` in the JSON response
 4. Copy your chat ID
 
-### 4. Configure Environment Variables
-
-```bash
-# Copy the example env file
-cp .env.example .env
-
-# Edit .env with your credentials
-nano .env  # or use your preferred editor
-```
-
-Update `.env` with your Telegram credentials:
+#### Update .env
 
 ```env
 TELEGRAM_BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
 TELEGRAM_CHAT_ID=123456789
 ```
-
-### 5. Test the Bot
-
-```bash
-python main.py
-```
-
-You should receive a weather message on Telegram!
 
 ## Configuration
 
@@ -220,7 +268,7 @@ At least, would try to complete the listed features. :)
 
 **Infrastructure:**
 
-- [ ] Docker containerization with docker-compose
+- [x] Docker containerization with docker-compose
 - [ ] Async/await for concurrent API operations
 - [ ] Web dashboard (FastAPI) to visualize weather history and ML datasets
 - [ ] Alternative notification channels (SMS, Email, Discord, Slack)
@@ -229,6 +277,7 @@ At least, would try to complete the listed features. :)
 
 **Operations:**
 
+- [x] Add log security (masking)
 - [ ] Monitoring and observability (Prometheus metrics, health endpoints)
 - [ ] Database migrations system (Alembic)
 - [ ] Performance optimization and caching (Redis)

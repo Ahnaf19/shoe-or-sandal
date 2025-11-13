@@ -1,0 +1,12 @@
+services:
+  weather-bot:
+    build: .
+    container_name: shoe-or-sandal-bot
+    env_file:
+      - .env
+    volumes:
+      # Persist database
+      - ./data:/app/data
+    restart: unless-stopped
+    # For one-time run, comment out restart and use:
+    # command: python main.py

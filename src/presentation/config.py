@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 
 from src.domain.models import Location
 from src.domain.exceptions import ConfigurationException
+from src.domain.utils import mask_sensitive_data
 
 # Load environment variables from .env file
 load_dotenv()
@@ -196,9 +197,13 @@ class AppConfig:
         """
         Generate human-readable configuration summary.
 
+        Masks sensitive data (chat_id) for safe logging.
+
         Returns:
             Multi-line string with configuration details
         """
+        masked_chat_id = mask_sensitive_data(self.telegram.chat_id, visible_chars=4)
+
         return f"""
 Application Configuration:
 -------------------------
@@ -207,5 +212,5 @@ Timezone: {self.location.location.timezone}
 Rain Threshold: {self.weather.rain_threshold}%
 Database: {self.database.path}
 Log Level: {self.logging.level}
-Telegram Chat ID: {self.telegram.chat_id}
+Telegram Chat ID: {masked_chat_id}
 """.strip()

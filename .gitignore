@@ -18,6 +18,7 @@ wheels/
 # Database files
 *.db
 *.db-journal
+data/
 
 # Logs
 *.log

@@ -11,6 +11,7 @@ import requests
 
 from src.domain.repositories import NotificationService
 from src.domain.exceptions import NotificationException, ExternalServiceException
+from src.domain.utils import mask_sensitive_data
 
 logger = logging.getLogger(__name__)
 
@@ -57,9 +58,10 @@ class TelegramNotificationService(NotificationService):
         self._max_retries = max_retries
         self._api_url = f"{self.API_BASE_URL}/bot{bot_token}"
 
+        masked_chat_id = mask_sensitive_data(chat_id, visible_chars=4)
         logger.info(
             f"Initialized TelegramNotificationService "
-            f"(chat_id={chat_id}, timeout={timeout}s)"
+            f"(chat_id={masked_chat_id}, timeout={timeout}s)"
         )
 
     def send_message(self, message: str, parse_mode: str = "Markdown") -> bool:
@@ -82,7 +84,8 @@ class TelegramNotificationService(NotificationService):
             logger.warning("Attempted to send empty message")
             return False
 
-        logger.info(f"Sending message to chat {self._chat_id} (length: {len(message)})")
+        masked_chat_id = mask_sensitive_data(self._chat_id, visible_chars=4)
+        logger.info(f"Sending message to chat {masked_chat_id} (length: {len(message)})")
 
         url = f"{self._api_url}/sendMessage"
         payload = {
