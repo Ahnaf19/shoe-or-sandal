@@ -4,7 +4,7 @@ A weather-based footwear recommendation bot that sends daily Telegram notificati
 
 Built with **Clean Architecture** and **SOLID principles** to demonstrate proper software design patterns in a practical application. The bot collects weather data for potential ML training while solving a real daily decision-making problem.
 
-> [!INFO]
+> [!NOTE]
 > **Status:** Core weather-to-Telegram pipeline implemented. Daily scheduling planned for future releases.
 
 ## Features
