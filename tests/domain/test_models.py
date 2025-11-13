@@ -51,7 +51,7 @@ class TestLocation:
         """Test that Location is frozen (immutable)."""
         location = Location(latitude=0, longitude=0)
         with pytest.raises(Exception):  # FrozenInstanceError
-            location.latitude = 10
+            location.latitude = 10 # type: ignore
 
 
 class TestWeatherForecast:
